@@ -132,6 +132,9 @@ function createDOMListTask(){
     listTaskContainer.appendChild(listTask);
     document.body.appendChild(listTaskContainer);
 }
+function printList(statut = "toutes"){
+    //si toutes ou Active ou Terminee
+}
 
 // Lancement de l'application
 document.addEventListener('DOMContentLoaded', () => {
