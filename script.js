@@ -66,6 +66,10 @@ function createDOMCreateTask(){
     const formCreateTaskSubmit = document.createElement('input');
     formCreateTaskSubmit.setAttribute('type','submit');
     formCreateTaskSubmit.setAttribute('value','Y');
+    formCreateTask.addEventListener('submit', function(event){
+        event.preventDefault();
+        addTask(document.getElementById("inputTaskTitle").value,document.getElementById("inputTaskDate").value,document.getElementById("inputTaskDescription").value);
+    });
     // Bouton  pour annuler la saisie (champs vidés)
     const formCreateTaskCancel = document.createElement('button');
     formCreateTaskCancel.setAttribute('type','button');
@@ -82,6 +86,10 @@ function createDOMCreateTask(){
     createTaskContainer.appendChild(formCreateTask);
 
     document.body.appendChild(createTaskContainer);
+}
+function addTask(title,date,description){
+    taches.push({title:title,description:description,date:date,statut:"Active"});
+    //console.log(taches);
 }
 
 function createTaskCancel(){
@@ -101,7 +109,7 @@ function createDOMListTask(){
         const listItem = document.createElement('li');
         const listItemInfo = document.createElement('p');
         listItemInfo.setAttribute('class','collapsible');
-        listItemInfo.innerHTML = i+1;
+        listItemInfo.innerHTML = (i+1)+" "+taches[i]["title"]+" "+taches[i]["date"];
         const listItemDescription = document.createElement('p');
         listItemDescription.setAttribute('class','content');
         listItemDescription.innerHTML = taches[i]["description"];
@@ -126,4 +134,6 @@ function createDOMListTask(){
 }
 
 // Lancement de l'application
-app();
+document.addEventListener('DOMContentLoaded', () => {
+    app();
+})
