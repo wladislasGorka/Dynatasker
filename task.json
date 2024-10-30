@@ -10,5 +10,17 @@
         "description": "Faire cela.",
         "dateEcheance": "23/10/2024",
         "statut": "Terminee"
+    },
+    {
+        "titre": "Tache3",
+        "description": "Faire ceci.",
+        "dateEcheance": "23/11/2024",
+        "statut": "Active"
+    },
+    {
+        "titre": "Tache4",
+        "description": "Faire cela.",
+        "dateEcheance": "23/10/2024",
+        "statut": "Terminee"
     }
 ]
