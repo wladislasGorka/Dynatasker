@@ -29,8 +29,9 @@ function createDOMApp(){
 }
 function createDOMHeader(){
     const header = document.createElement('header');
-    const title = document.createElement('h1');
-    title.innerHTML = "Dynatasker";
+    const title = document.createElement('img');
+    title.src = 'logo.png';
+    title.style.width = '100%';
 
     header.appendChild(title);
     document.body.appendChild(header);
