@@ -127,7 +127,7 @@ function addRowTaskInfo(index,titre,date,statut){
     const td5 = document.createElement('td');
     const btnSuppr = document.createElement('button');
     btnSuppr.setAttribute('type','button');
-    btnSuppr.innerHTML = "X";
+    btnSuppr.innerHTML = '<img class="icon" src="trash-can.png">';
     btnSuppr.setAttribute('onclick',`event.stopPropagation(); supprTask(${index})`);
 
     td4.appendChild(btnModif);
