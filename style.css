@@ -15,6 +15,9 @@ table{
 caption{
     caption-side: bottom;
 }
+tr.content td{
+    white-space: pre;
+}
 
 .hidden{
     display: none;

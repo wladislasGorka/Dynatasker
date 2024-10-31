@@ -67,6 +67,7 @@ function createDOMCreateTask(){
     formCreateTaskSubmit.setAttribute('value','Y');
     formCreateTask.addEventListener('submit', function(event){
         event.preventDefault();
+        //console.log(document.getElementById("inputTaskTitle").value);
         addTask(document.getElementById("inputTaskTitle").value,document.getElementById("inputTaskDate").value,document.getElementById("inputTaskDescription").value);
     });
     // Bouton  pour annuler la saisie (champs vidés)
@@ -87,6 +88,7 @@ function createDOMCreateTask(){
 function addTask(title,date,description){
     taches.push({title:title,description:description,date:date,statut:"Active"});
     //console.log(taches);
+    createDOMListTask();
 }
 
 function createTaskCancel(){
@@ -97,6 +99,8 @@ function createTaskCancel(){
 }
 
 function createDOMListTask(){
+    const tableBody = document.getElementById('tableTaskList');
+    tableBody.innerHTML = "";
     for(let i=0; i<taches.length; i++){
         addRowTaskInfo(i,taches[i]["title"],taches[i]["date"],taches[i]["statut"]);
         addRowTaskDescription(i,taches[i]["description"]);
