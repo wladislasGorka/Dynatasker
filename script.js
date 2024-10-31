@@ -140,3 +140,22 @@ function printList(statut = "toutes"){
 document.addEventListener('DOMContentLoaded', () => {
     app();
 })
+
+let currentTaskDisplay = "";
+// affiche ou cache la description de la tache au click sur la tache.
+function toggleHiddenContent(id){
+    // Récupération de l'élément <tr> contenant la description de la tache
+    const content = document.getElementById(id);
+
+    // Si une description est déjà ouverte, on la ferme
+    if(currentTaskDisplay !== "" && currentTaskDisplay !== id){
+        document.getElementById(currentTaskDisplay).classList.toggle('hidden');
+    }
+    // On ajoute ou retire la classe 'hidden' sur la tache cliquée
+    content.classList.toggle('hidden');
+    if(content.classList.contains('hidden')){
+        currentTaskDisplay = "";
+    }else{
+        currentTaskDisplay = id;
+    }
+}

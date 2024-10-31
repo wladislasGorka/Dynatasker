@@ -8,6 +8,47 @@
     <title>Dynatasker</title>
 </head>
 <body>
+    <table>
+        <caption>
+            <strong>Dynatasker</strong>- Wladislas GORKA - 2024
+        </caption>
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Titre</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Modif</th>
+                <th>Suppr</th>                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="collapse" onclick="toggleHiddenContent('content1')">
+                <th>1</th>
+                <td>Tache1</td>
+                <td>20/11/2024</td>
+                <td>Active</td>
+                <td>/</td>
+                <td>/</td>
+            </tr>
+            <tr id="content1" class="content">
+                <th></th>
+                <td colspan="5">Ici la description de la Tache1</td>
+            </tr>
+            <tr class="collapse" onclick="toggleHiddenContent('content2')">
+                <th>2</th>
+                <td>Tache2</td>
+                <td>20/11/2024</td>
+                <td>Active</td>
+                <td>/</td>
+                <td>/</td>
+            </tr>
+            <tr id="content2" class="content hidden">
+                <th></th>
+                <td colspan="5">Ici la description de la Tache2</td>
+            </tr>
+        </tbody>
+    </table>
     <script src="script.js"></script>
 </body>
 </html>
