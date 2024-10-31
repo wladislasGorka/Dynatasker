@@ -1,0 +1,82 @@
+:root{
+    --color-ivory: #FAFCF2;
+    --color-gunmetal: #1C2933;
+    --color-slate-gray: #6D797E;
+    --color-Timberwolf: #D2D6D1;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#header{
+    box-shadow: 0px 6px 5px var(--color-slate-gray);
+}
+#header img{
+    background-color: var(--color-ivory);
+    height: 150px;
+    object-fit: scale-down;
+}
+
+table{
+    background-color: var(--color-ivory);
+    box-shadow: 0px 6px 5px var(--color-slate-gray);
+    width: 80%;
+    margin-inline: auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+thead{
+    background-color: var(--color-gunmetal);
+    color: var(--color-ivory);
+    text-align: left;    
+}
+th{
+    padding: 5px;
+}
+tr.collapse:hover{
+    background-color: var(--color-Timberwolf);
+}
+tr.content{
+    background-color: var(--color-Timberwolf);
+}
+
+caption{
+    margin-top: 10px;
+    caption-side: bottom;
+    font-size: smaller;
+}
+tr.content td{
+    white-space: pre;
+}
+
+.hidden{
+    display: none;
+}
+
+#modalModifTask{
+    position: absolute;
+    background-color: var(--color-ivory);
+    border: 2px solid var(--color-gunmetal);
+    border-radius: 20px;
+    box-shadow: 0px 6px 5px var(--color-slate-gray);
+    width: 400px;
+    height: 200px;
+    top: 50%;
+    left: calc(50% - 220px);
+    padding: 20px;
+    z-index: 10;
+}
+button{
+    border: none;
+    background-color: var(--color-ivory);
+    text-decoration: none;
+}
+.collapse:hover button{
+    background-color: var(--color-Timberwolf);
+}
+.icon{
+    width: 24px;
+    height: 24px;
+}
