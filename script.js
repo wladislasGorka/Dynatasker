@@ -1,5 +1,5 @@
-// Tableau des taches construit à partir du fichier json
-let taches;
+let taches; // Tableau des taches construit à partir du fichier json
+let currentTaskDisplay = ""; // tache dont la description est visible
 
 // Récupération des informations dans le .json pour créer le tableau des taches
 async function monJSONParser(url) {
@@ -24,9 +24,9 @@ async function app(){
 function createDOMApp(){
     createDOMHeader();
     createDOMCreateTask();
-    // createDOMUpdateTask(task);
     createDOMListTask();
 }
+
 function createDOMHeader(){
     const header = document.getElementById('header');
     const title = document.createElement('img');
@@ -74,7 +74,7 @@ function createDOMCreateTask(){
     const formCreateTaskCancel = document.createElement('button');
     formCreateTaskCancel.setAttribute('type','button');
     formCreateTaskCancel.innerHTML = "X";
-    formCreateTaskCancel.setAttribute('onclick','createTaskCancel()');
+    formCreateTaskCancel.setAttribute('onclick','addTaskCancel()');
 
     formCreateTask.appendChild(inputTaskTitle);
     formCreateTask.appendChild(inputTaskDate);
@@ -85,24 +85,17 @@ function createDOMCreateTask(){
     createTaskContainer.appendChild(title);
     createTaskContainer.appendChild(formCreateTask);
 }
+
 function addTask(title,date,description){
     taches.push({title:title,description:description,date:date,statut:"Active"});
     //console.log(taches);
     createDOMListTask();
 }
-
-function createTaskCancel(){
+function addTaskCancel(){
     console.log('Annulation de la saisie!');
     document.getElementById('inputTaskTitle').value = '';
     document.getElementById('inputTaskDate').value = '';
     document.getElementById('inputTaskDescription').value = '';
-}
-function modifTask(index){
-    console.log('modifier la tache '+index);
-}
-function supprTask(index){
-    taches.splice(index,1);
-    createDOMListTask();
 }
 
 function createDOMListTask(){
@@ -161,16 +154,7 @@ function addRowTaskDescription(index,description){
     row.appendChild(td);
     tableBody.appendChild(row);
 }
-// function printList(statut = "toutes"){
-//     //si toutes ou Active ou Terminee
-// }
 
-// Lancement de l'application
-document.addEventListener('DOMContentLoaded', () => {
-    app();
-})
-
-let currentTaskDisplay = "";
 // affiche ou cache la description de la tache au click sur la tache.
 function toggleHiddenContent(id){
     // Récupération de l'élément <tr> contenant la description de la tache
@@ -187,3 +171,49 @@ function toggleHiddenContent(id){
         currentTaskDisplay = id;
     }
 }
+
+function modifTask(index){
+    console.log('modifier la tache '+index);
+    const modal = document.getElementById('modalModifTask');
+    if(modal === null){
+        createModalModifTask();
+    }else{
+        openModalModifTask();
+    }
+}
+function supprTask(index){
+    taches.splice(index,1);
+    createDOMListTask();
+}
+
+function createModalModifTask(task){
+    console.log('creation modal');
+    const modal = document.createElement('section');
+    modal.setAttribute('id','modalModifTask');
+
+    const header = document.createElement('h1');
+    header.innerHTML = "Modification:"
+
+    const btnCancelModif = document.createElement('button');
+    btnCancelModif.setAttribute('type','button');
+    btnCancelModif.innerHTML = "Annuler";
+    btnCancelModif.setAttribute('onclick','closeModalModif()');
+
+    modal.appendChild(header);
+    modal.appendChild(btnCancelModif);
+    document.body.appendChild(modal);
+}
+
+function openModalModifTask(task){
+    console.log('ouverture modal');
+    document.getElementById('modalModifTask').style.display = "block";
+}
+
+function closeModalModif(){
+    document.getElementById('modalModifTask').style.display = "none";
+}
+
+// Lancement de l'application
+document.addEventListener('DOMContentLoaded', () => {
+    app();
+})

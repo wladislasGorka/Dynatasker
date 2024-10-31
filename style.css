@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    position: relative;
 }
 #header{
     margin-top: -120px;
@@ -21,4 +22,15 @@ tr.content td{
 
 .hidden{
     display: none;
+}
+
+#modalModifTask{
+    position: absolute;
+    background-color: rgb(196, 176, 133);
+    width: 400px;
+    height: 200px;
+    top: 50%;
+    left: calc(50% - 200px);
+    padding: 20px;
+    z-index: 10;
 }
