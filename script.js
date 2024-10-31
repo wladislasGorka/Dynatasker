@@ -18,10 +18,6 @@ async function monJSONParser(url) {
 async function app(){
     // Récupération des taches avant manipuler le DOM
     await monJSONParser("task.json");
-    createDOMApp();
-}
-
-function createDOMApp(){
     createDOMHeader();
     createDOMCreateTask();
     createDOMListTask();
@@ -30,7 +26,7 @@ function createDOMApp(){
 function createDOMHeader(){
     const header = document.getElementById('header');
     const title = document.createElement('img');
-    title.src = 'logo.png';
+    title.src = 'logoElargi.png';
     title.style.width = '100%';
 
     header.appendChild(title);
@@ -53,7 +49,7 @@ function createDOMCreateTask(){
 
     const inputTaskDate = document.createElement('input');
     inputTaskDate.setAttribute('id','inputTaskDate');
-    inputTaskDate.setAttribute('type','text');
+    inputTaskDate.setAttribute('type','date');
     inputTaskDate.setAttribute('placeholder','jj/mm/aaaa');
 
     const inputTaskDescription = document.createElement('textarea');
@@ -68,7 +64,11 @@ function createDOMCreateTask(){
     formCreateTask.addEventListener('submit', function(event){
         event.preventDefault();
         //console.log(document.getElementById("inputTaskTitle").value);
-        addTask(document.getElementById("inputTaskTitle").value,document.getElementById("inputTaskDate").value,document.getElementById("inputTaskDescription").value);
+        const title = document.getElementById("inputTaskTitle").value;
+        let date = document.getElementById("inputTaskDate").value;
+        date = FormatDate(date);
+        const description = document.getElementById("inputTaskDescription").value;
+        addTask(title,date,description);
     });
     // Bouton  pour annuler la saisie (champs vidés)
     const formCreateTaskCancel = document.createElement('button');
@@ -171,6 +171,16 @@ function toggleHiddenContent(id){
         currentTaskDisplay = id;
     }
 }
+// Change le format de la date 2024-10-03 => 03/10/2024
+function FormatDate(date){
+    const newDate = date.split('-').reverse().join('/');
+    return newDate;
+}
+// Change le format de la date 03/10/2024 => 2024-10-03
+function FormatDateTiret(date){
+    const newDate = date.split('/').reverse().join('-');
+    return newDate;
+}
 
 function modifTask(index){
     console.log('modifier la tache '+index);
@@ -208,7 +218,7 @@ function createModalModifTask(){
 
     const inputTaskDate = document.createElement('input');
     inputTaskDate.setAttribute('id','inputModifTaskDate');
-    inputTaskDate.setAttribute('type','text');
+    inputTaskDate.setAttribute('type','date');
 
     const inputTaskDescription = document.createElement('textarea');
     inputTaskDescription.setAttribute('id','inputModifTaskDescription');
@@ -237,14 +247,14 @@ function createModalModifTask(){
 function openModalModifTask(index){
     console.log('Ouverture du modal');
     document.getElementById('inputModifTaskTitle').value = taches[index]["title"];
-    document.getElementById('inputModifTaskDate').value = taches[index]["date"];
+    document.getElementById('inputModifTaskDate').value = FormatDateTiret(taches[index]["date"]);
     document.getElementById('inputModifTaskDescription').innerHTML = taches[index]["description"];
 
     document.getElementById('formModifTask').addEventListener('submit', function(event){
         event.preventDefault();
         //console.log("input "+document.getElementById("inputModifTaskTitle").value);
         taches[index]["title"] = document.getElementById("inputModifTaskTitle").value;
-        taches[index]["date"] = document.getElementById("inputModifTaskDate").value;
+        taches[index]["date"] = FormatDate(document.getElementById("inputModifTaskDate").value);
         taches[index]["description"] = document.getElementById("inputModifTaskDescription").value;
 
         createDOMListTask();

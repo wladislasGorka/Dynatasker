@@ -4,9 +4,12 @@ body{
     position: relative;
 }
 #header{
-    margin-top: -120px;
-    height: 380px;
-    overflow: hidden;
+    box-shadow: 0px 6px 5px gray;
+}
+#header img{
+    background-color: rgb(250,252,242);
+    height: 150px;
+    object-fit: scale-down;
 }
 
 table{
@@ -26,7 +29,7 @@ tr.content td{
 
 #modalModifTask{
     position: absolute;
-    background-color: rgb(196, 176, 133);
+    background-color: rgba(187, 183, 178, 0.96);
     width: 400px;
     height: 200px;
     top: 50%;
