@@ -97,6 +97,13 @@ function createTaskCancel(){
     document.getElementById('inputTaskDate').value = '';
     document.getElementById('inputTaskDescription').value = '';
 }
+function modifTask(index){
+    console.log('modifier la tache '+index);
+}
+function supprTask(index){
+    taches.splice(index,1);
+    createDOMListTask();
+}
 
 function createDOMListTask(){
     const tableBody = document.getElementById('tableTaskList');
@@ -120,8 +127,18 @@ function addRowTaskInfo(index,titre,date,statut){
     const td3 = document.createElement('td');
     td3.innerHTML = statut;
     const td4 = document.createElement('td');
+    const btnModif = document.createElement('button');
+    btnModif.setAttribute('type','button');
+    btnModif.innerHTML = "M";
+    btnModif.setAttribute('onclick',`event.stopPropagation(); modifTask(${index})`);
     const td5 = document.createElement('td');
+    const btnSuppr = document.createElement('button');
+    btnSuppr.setAttribute('type','button');
+    btnSuppr.innerHTML = "X";
+    btnSuppr.setAttribute('onclick',`event.stopPropagation(); supprTask(${index})`);
 
+    td4.appendChild(btnModif);
+    td5.appendChild(btnSuppr);
     row.appendChild(th);
     row.appendChild(td1);
     row.appendChild(td2);
@@ -158,7 +175,6 @@ let currentTaskDisplay = "";
 function toggleHiddenContent(id){
     // Récupération de l'élément <tr> contenant la description de la tache
     const content = document.getElementById(id);
-
     // Si une description est déjà ouverte, on la ferme
     if(currentTaskDisplay !== "" && currentTaskDisplay !== id){
         document.getElementById(currentTaskDisplay).classList.toggle('hidden');
