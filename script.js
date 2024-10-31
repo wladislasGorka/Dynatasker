@@ -28,17 +28,16 @@ function createDOMApp(){
     createDOMListTask();
 }
 function createDOMHeader(){
-    const header = document.createElement('header');
+    const header = document.getElementById('header');
     const title = document.createElement('img');
     title.src = 'logo.png';
     title.style.width = '100%';
 
     header.appendChild(title);
-    document.body.appendChild(header);
 }
 
 function createDOMCreateTask(){
-    const createTaskContainer = document.createElement('section');
+    const createTaskContainer = document.getElementById('createTaskContainer');
     const title = document.createElement('h2');
     title.innerHTML = "Création de Tâche";
 
@@ -84,8 +83,6 @@ function createDOMCreateTask(){
 
     createTaskContainer.appendChild(title);
     createTaskContainer.appendChild(formCreateTask);
-
-    document.body.appendChild(createTaskContainer);
 }
 function addTask(title,date,description){
     taches.push({title:title,description:description,date:date,statut:"Active"});
@@ -100,41 +97,52 @@ function createTaskCancel(){
 }
 
 function createDOMListTask(){
-    const listTaskContainer = document.createElement('section');
-    const listTaskHeader = document.createElement('header');
-    listTaskHeader.innerHTML = "N° | Titre | Date d\'échéance | statut";
-    const listTask = document.createElement('ul');
-
     for(let i=0; i<taches.length; i++){
-        const listItem = document.createElement('li');
-        const listItemInfo = document.createElement('p');
-        listItemInfo.setAttribute('class','collapsible');
-        listItemInfo.innerHTML = (i+1)+" "+taches[i]["title"]+" "+taches[i]["date"];
-        const listItemDescription = document.createElement('p');
-        listItemDescription.setAttribute('class','content');
-        listItemDescription.innerHTML = taches[i]["description"];
-        listItemDescription.style.display = 'none';
-
-        listItem.addEventListener('click', function(){
-            if(listItemDescription.style.display === 'none'){
-                listItemDescription.style.display = 'block';
-            }else{
-                listItemDescription.style.display = 'none';
-            }
-        });
-
-        listItem.appendChild(listItemInfo);
-        listItem.appendChild(listItemDescription);
-        listTask.appendChild(listItem);
-    };
-
-    listTaskContainer.appendChild(listTaskHeader);
-    listTaskContainer.appendChild(listTask);
-    document.body.appendChild(listTaskContainer);
+        addRowTaskInfo(i,taches[i]["title"],taches[i]["date"],taches[i]["statut"]);
+        addRowTaskDescription(i,taches[i]["description"]);
+    }
 }
-function printList(statut = "toutes"){
-    //si toutes ou Active ou Terminee
+function addRowTaskInfo(index,titre,date,statut){
+    const tableBody = document.getElementById('tableTaskList');
+    const row = document.createElement('tr');
+    row.setAttribute('class','collapse');
+    row.setAttribute('onclick',`toggleHiddenContent('content${index}')`)
+    const th = document.createElement('th');
+    th.innerHTML = index +1; //+1 pour que l'affichage commence à N°1
+    const td1 = document.createElement('td'); 
+    td1.innerHTML = titre;
+    const td2 = document.createElement('td');
+    td2.innerHTML = date;
+    const td3 = document.createElement('td');
+    td3.innerHTML = statut;
+    const td4 = document.createElement('td');
+    const td5 = document.createElement('td');
+
+    row.appendChild(th);
+    row.appendChild(td1);
+    row.appendChild(td2);
+    row.appendChild(td3);
+    row.appendChild(td4);
+    row.appendChild(td5);
+    tableBody.appendChild(row);
 }
+function addRowTaskDescription(index,description){
+    const tableBody = document.getElementById('tableTaskList');
+    const row = document.createElement('tr');
+    row.setAttribute('id',`content${index}`);
+    row.setAttribute('class','content hidden');
+    const th = document.createElement('th');
+    const td = document.createElement('td'); 
+    td.setAttribute('colspan','5');
+    td.innerHTML = description;
+
+    row.appendChild(th);
+    row.appendChild(td);
+    tableBody.appendChild(row);
+}
+// function printList(statut = "toutes"){
+//     //si toutes ou Active ou Terminee
+// }
 
 // Lancement de l'application
 document.addEventListener('DOMContentLoaded', () => {
