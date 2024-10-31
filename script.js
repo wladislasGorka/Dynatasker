@@ -177,8 +177,9 @@ function modifTask(index){
     const modal = document.getElementById('modalModifTask');
     if(modal === null){
         createModalModifTask();
+        openModalModifTask(index);
     }else{
-        openModalModifTask();
+        openModalModifTask(index);
     }
 }
 function supprTask(index){
@@ -186,13 +187,37 @@ function supprTask(index){
     createDOMListTask();
 }
 
-function createModalModifTask(task){
+function createModalModifTask(){
     console.log('creation modal');
     const modal = document.createElement('section');
     modal.setAttribute('id','modalModifTask');
+    modal.style.display = "none";
 
     const header = document.createElement('h1');
-    header.innerHTML = "Modification:"
+    header.innerHTML = "Modification de la Tâche:";
+
+    //Formulaire pour la création d'une tâche
+    const formModifTask = document.createElement('form');
+    formModifTask.setAttribute('method','post');
+    formModifTask.setAttribute('id','formModifTask');
+    formModifTask.setAttribute('name','formModifTask');
+
+    const inputTaskTitle = document.createElement('input');
+    inputTaskTitle.setAttribute('id','inputModifTaskTitle');
+    inputTaskTitle.setAttribute('type','text');
+
+    const inputTaskDate = document.createElement('input');
+    inputTaskDate.setAttribute('id','inputModifTaskDate');
+    inputTaskDate.setAttribute('type','text');
+
+    const inputTaskDescription = document.createElement('textarea');
+    inputTaskDescription.setAttribute('id','inputModifTaskDescription');
+    inputTaskDescription.setAttribute('type','text');
+
+    // Bouton de validation du form
+    const formModifTaskSubmit = document.createElement('input');
+    formModifTaskSubmit.setAttribute('type','submit');
+    formModifTaskSubmit.setAttribute('value','Valider');
 
     const btnCancelModif = document.createElement('button');
     btnCancelModif.setAttribute('type','button');
@@ -200,16 +225,37 @@ function createModalModifTask(task){
     btnCancelModif.setAttribute('onclick','closeModalModif()');
 
     modal.appendChild(header);
+    formModifTask.appendChild(inputTaskTitle);
+    formModifTask.appendChild(inputTaskDate);
+    formModifTask.appendChild(inputTaskDescription);
+    formModifTask.appendChild(formModifTaskSubmit);
+    modal.appendChild(formModifTask);
     modal.appendChild(btnCancelModif);
     document.body.appendChild(modal);
 }
 
-function openModalModifTask(task){
-    console.log('ouverture modal');
+function openModalModifTask(index){
+    console.log('Ouverture du modal');
+    document.getElementById('inputModifTaskTitle').value = taches[index]["title"];
+    document.getElementById('inputModifTaskDate').value = taches[index]["date"];
+    document.getElementById('inputModifTaskDescription').innerHTML = taches[index]["description"];
+
+    document.getElementById('formModifTask').addEventListener('submit', function(event){
+        event.preventDefault();
+        //console.log("input "+document.getElementById("inputModifTaskTitle").value);
+        taches[index]["title"] = document.getElementById("inputModifTaskTitle").value;
+        taches[index]["date"] = document.getElementById("inputModifTaskDate").value;
+        taches[index]["description"] = document.getElementById("inputModifTaskDescription").value;
+
+        createDOMListTask();
+        closeModalModif();
+    }, {once:true});
+
     document.getElementById('modalModifTask').style.display = "block";
 }
 
 function closeModalModif(){
+    console.log('Fermeture du modal');
     document.getElementById('modalModifTask').style.display = "none";
 }
 
