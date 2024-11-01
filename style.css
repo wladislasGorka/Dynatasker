@@ -1,58 +1,61 @@
-:root{
-    --color-ivory: #FAFCF2;
-    --color-gunmetal: #1C2933;
-    --color-slate-gray: #6D797E;
-    --color-Timberwolf: #D2D6D1;
+:root {
+  --color-ivory: #fafcf2;
+  --color-gunmetal: #1c2933;
+  --color-slate-gray: #6d797e;
+  --color-Timberwolf: #d2d6d1;
 }
 
-body{
-    margin: 0;
-    padding: 0;
-    position: relative;
+body {
+  background-color: var(--color-Timberwolf);
+  margin: 0;
+  padding: 0;
+  position: relative;
+  color: var(--color-gunmetal);
 }
-#header{
-    box-shadow: 0px 6px 5px var(--color-slate-gray);
+#header {
+  box-shadow: 0px 6px 5px var(--color-slate-gray);
+  height: 150px;
 }
-#header img{
-    background-color: var(--color-ivory);
-    height: 150px;
-    object-fit: scale-down;
-}
-
-table{
-    background-color: var(--color-ivory);
-    box-shadow: 0px 6px 5px var(--color-slate-gray);
-    width: 80%;
-    margin-inline: auto;
-    border-collapse: collapse;
-    border-radius: 10px;
-}
-thead{
-    background-color: var(--color-gunmetal);
-    color: var(--color-ivory);
-    text-align: left;    
-}
-th{
-    padding: 5px;
-}
-tr.collapse:hover{
-    background-color: var(--color-Timberwolf);
-}
-tr.content{
-    background-color: var(--color-Timberwolf);
+#header img {
+  background-color: var(--color-ivory);
+  height: 150px;
+  object-fit: scale-down;
 }
 
-caption{
-    margin-top: 10px;
-    caption-side: bottom;
-    font-size: smaller;
+table {
+  background-color: var(--color-ivory);
+  box-shadow: 0px 6px 5px var(--color-slate-gray);
+  width: 80%;
+  margin-inline: auto;
+  border-collapse: collapse;
+  border-radius: 10px;
 }
-tr.content td{
-    white-space: pre;
+thead {
+  background-color: var(--color-gunmetal);
+  color: var(--color-ivory);
+  text-align: left;
+}
+th {
+  padding: 5px;
+}
+tr.collapse:hover {
+  background-color: var(--color-Timberwolf);
+}
+tr.content {
+  background-color: var(--color-Timberwolf);
 }
 
-.hidden{
-    display: none;
+caption {
+  margin-top: 10px;
+  caption-side: bottom;
+  font-size: smaller;
+}
+tr.content td {
+  white-space: pre;
+}
+
+.hidden {
+  display: none;
 }
 
 #modalUpdateTask{
@@ -68,15 +71,15 @@ tr.content td{
     padding: 20px;
     z-index: 10;
 }
-button{
-    border: none;
-    background-color: var(--color-ivory);
-    text-decoration: none;
+button {
+  border: none;
+  background-color: var(--color-ivory);
+  text-decoration: none;
 }
-.collapse:hover button{
-    background-color: var(--color-Timberwolf);
+.collapse:hover button {
+  background-color: var(--color-Timberwolf);
 }
-.icon{
-    width: 24px;
-    height: 24px;
+.icon {
+  width: 24px;
+  height: 24px;
 }

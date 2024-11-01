@@ -1,27 +1,26 @@
 [
-    {
-      "title": "Réunion de lancement",
-      "description": "Réunion initiale pour discuter des objectifs et des livrables du projet.",
-      "date": "01/11/2024",
-      "statut": "Active"
-    },
-    {
-      "title": "Développement de la fonctionnalité X",
-      "description": "Travail sur le développement de la nouvelle fonctionnalité X pour l'application.",
-      "date": "03/11/2024",
-      "statut": "Active"
-    },
-    {
-      "title": "Test de l'intégration",
-      "description": "Tests pour vérifier l'intégration des nouvelles fonctionnalités.",
-      "date": "07/10/2024",
-      "statut": "Terminee"
-    },
-    {
-      "title": "Livraison au client",
-      "description": "Préparation et livraison de la version finale au client.",
-      "date": "10/11/2024",
-      "statut": "Active"
-    }
-  ]
-  
+  {
+    "title": "Réunion de lancement",
+    "description": "Réunion initiale pour discuter des objectifs et des livrables du projet.",
+    "date": "01/11/2024",
+    "statut": "Active"
+  },
+  {
+    "title": "Développement de la fonctionnalité X",
+    "description": "Travail sur le développement de la nouvelle fonctionnalité X pour l'application.",
+    "date": "03/11/2024",
+    "statut": "Active"
+  },
+  {
+    "title": "Test de l'intégration",
+    "description": "Tests pour vérifier l'intégration des nouvelles fonctionnalités.",
+    "date": "07/10/2024",
+    "statut": "Terminée"
+  },
+  {
+    "title": "Livraison au client",
+    "description": "Préparation et livraison de la version finale au client.",
+    "date": "10/11/2024",
+    "statut": "Active"
+  }
+]
