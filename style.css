@@ -55,7 +55,7 @@ tr.content td{
     display: none;
 }
 
-#modalModifTask{
+#modalUpdateTask{
     position: absolute;
     background-color: var(--color-ivory);
     border: 2px solid var(--color-gunmetal);

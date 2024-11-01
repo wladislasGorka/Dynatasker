@@ -98,6 +98,7 @@ function addTaskCancel(){
     document.getElementById('inputTaskDescription').value = '';
 }
 
+// Remplissage du tableau des Tâches.
 function createDOMListTask(){
     const tableBody = document.getElementById('tableTaskList');
     tableBody.innerHTML = "";
@@ -184,12 +185,12 @@ function FormatDateTiret(date){
 
 function modifTask(index){
     console.log('modifier la tache '+index);
-    const modal = document.getElementById('modalModifTask');
+    const modal = document.getElementById('modalUpdateTask');
     if(modal === null){
-        createModalModifTask();
-        openModalModifTask(index);
+        createModal("Update");
+        openModalUpdateTask(index);
     }else{
-        openModalModifTask(index);
+        openModalUpdateTask(index);
     }
 }
 function supprTask(index){
@@ -197,76 +198,132 @@ function supprTask(index){
     createDOMListTask();
 }
 
-function createModalModifTask(){
+// Creation de la fenetre modal contenant le formulaire d'ajout ou suppression de tache
+// action = "Create" || "Update"
+function createModal(action){
     console.log('creation modal');
     const modal = document.createElement('section');
-    modal.setAttribute('id','modalModifTask');
+    modal.setAttribute('id','modal'+action+'Task');
     modal.style.display = "none";
 
     const header = document.createElement('h1');
-    header.innerHTML = "Modification de la Tâche:";
+    action === "Create" ? header.innerHTML = "Création de Tâche:" : header.innerHTML = "Modification de Tâche:";
 
-    //Formulaire pour la création d'une tâche
-    const formModifTask = document.createElement('form');
-    formModifTask.setAttribute('method','post');
-    formModifTask.setAttribute('id','formModifTask');
-    formModifTask.setAttribute('name','formModifTask');
+    //Formulaire pour la création/modification d'une tâche
+    const form = document.createElement('form');
+    form.setAttribute('method','post');
+    form.setAttribute('id','form'+action+'Task');
+    form.setAttribute('name','form'+action+'Task'); 
 
-    const inputTaskTitle = document.createElement('input');
-    inputTaskTitle.setAttribute('id','inputModifTaskTitle');
-    inputTaskTitle.setAttribute('type','text');
-
-    const inputTaskDate = document.createElement('input');
-    inputTaskDate.setAttribute('id','inputModifTaskDate');
-    inputTaskDate.setAttribute('type','date');
-
-    const inputTaskDescription = document.createElement('textarea');
-    inputTaskDescription.setAttribute('id','inputModifTaskDescription');
-    inputTaskDescription.setAttribute('type','text');
+    createInput(form,action,"Titre","text","Titre");
+    createInput(form,action,"Date","date","Date");
+    createInput(form,action,"Description","textarea","Description");
 
     // Bouton de validation du form
-    const formModifTaskSubmit = document.createElement('input');
-    formModifTaskSubmit.setAttribute('type','submit');
-    formModifTaskSubmit.setAttribute('value','Valider');
+    const formSubmit = document.createElement('input');
+    formSubmit.setAttribute('type','submit');
+    formSubmit.setAttribute('value','Valider');
+    formSubmit.setAttribute('id','form'+action+'Task');
+    // Bouton d'annulation du form
+    const formCancel = document.createElement('button');
+    formCancel.setAttribute('type','button');
+    formCancel.innerHTML = "Annuler";
+    formCancel.setAttribute('onclick','closeModal("'+action+'")');
 
-    const btnCancelModif = document.createElement('button');
-    btnCancelModif.setAttribute('type','button');
-    btnCancelModif.innerHTML = "Annuler";
-    btnCancelModif.setAttribute('onclick','closeModalModif()');
-
+    form.appendChild(formSubmit);
+    form.appendChild(formCancel);
     modal.appendChild(header);
-    formModifTask.appendChild(inputTaskTitle);
-    formModifTask.appendChild(inputTaskDate);
-    formModifTask.appendChild(inputTaskDescription);
-    formModifTask.appendChild(formModifTaskSubmit);
-    modal.appendChild(formModifTask);
-    modal.appendChild(btnCancelModif);
+    modal.appendChild(form);
     document.body.appendChild(modal);
 }
 
-function openModalModifTask(index){
-    console.log('Ouverture du modal');
-    document.getElementById('inputModifTaskTitle').value = taches[index]["title"];
-    document.getElementById('inputModifTaskDate').value = FormatDateTiret(taches[index]["date"]);
-    document.getElementById('inputModifTaskDescription').innerHTML = taches[index]["description"];
+// function createModalModifTask(){
+//     console.log('creation modal');
+//     const modal = document.createElement('section');
+//     modal.setAttribute('id','modalModifTask');
+//     modal.style.display = "none";
 
-    document.getElementById('formModifTask').addEventListener('submit', function(event){
-        event.preventDefault();
-        //console.log("input "+document.getElementById("inputModifTaskTitle").value);
-        taches[index]["title"] = document.getElementById("inputModifTaskTitle").value;
-        taches[index]["date"] = FormatDate(document.getElementById("inputModifTaskDate").value);
-        taches[index]["description"] = document.getElementById("inputModifTaskDescription").value;
+//     const header = document.createElement('h1');
+//     header.innerHTML = "Modification de la Tâche:";
 
-        createDOMListTask();
-        closeModalModif();
-    }, {once:true});
+//     //Formulaire pour la création d'une tâche
+//     const formModifTask = document.createElement('form');
+//     formModifTask.setAttribute('method','post');
+//     formModifTask.setAttribute('id','formModifTask');
+//     formModifTask.setAttribute('name','formModifTask');
 
-    document.getElementById('modalModifTask').style.display = "block";
+//     const inputTaskTitle = document.createElement('input');
+//     inputTaskTitle.setAttribute('id','inputModifTaskTitle');
+//     inputTaskTitle.setAttribute('type','text');
+
+//     const inputTaskDate = document.createElement('input');
+//     inputTaskDate.setAttribute('id','inputModifTaskDate');
+//     inputTaskDate.setAttribute('type','date');
+
+//     const inputTaskDescription = document.createElement('textarea');
+//     inputTaskDescription.setAttribute('id','inputModifTaskDescription');
+//     inputTaskDescription.setAttribute('type','text');
+
+//     // Bouton de validation du form
+//     const formModifTaskSubmit = document.createElement('input');
+//     formModifTaskSubmit.setAttribute('type','submit');
+//     formModifTaskSubmit.setAttribute('value','Valider');
+
+//     const btnCancelModif = document.createElement('button');
+//     btnCancelModif.setAttribute('type','button');
+//     btnCancelModif.innerHTML = "Annuler";
+//     btnCancelModif.setAttribute('onclick','closeModalModif()');
+
+//     modal.appendChild(header);
+//     formModifTask.appendChild(inputTaskTitle);
+//     formModifTask.appendChild(inputTaskDate);
+//     formModifTask.appendChild(inputTaskDescription);
+//     formModifTask.appendChild(formModifTaskSubmit);
+//     modal.appendChild(formModifTask);
+//     modal.appendChild(btnCancelModif);
+//     document.body.appendChild(modal);
+// }
+function createInput(form,action,data,type,placeholder){
+    const label = document.createElement('label');
+    label.setAttribute('for','input'+action+data);
+    data === "Date" ? label.innerHTML = "Date d'échéance" : label.innerHTML = data;
+
+    let input;
+    type === "textarea" ? input = document.createElement('textarea') : input = document.createElement('input');
+    type === "date" ? input.setAttribute('type',"date") : input.setAttribute('type',"text");
+    input.setAttribute('id','input'+action+data);
+    input.setAttribute('placeholder',placeholder);
+
+    form.appendChild(label);
+    form.appendChild(input);
 }
 
-function closeModalModif(){
+function openModalUpdateTask(index){
+    console.log('Ouverture du modal');
+    const titre = document.getElementById('inputUpdateTitre');
+    titre.value = taches[index]["title"];
+    const date = document.getElementById('inputUpdateDate');
+    date.value = FormatDateTiret(taches[index]["date"]);
+    const description = document.getElementById('inputUpdateDescription');
+    description.innerHTML = taches[index]["description"];
+
+    document.getElementById('formUpdateTask').addEventListener('submit', function(event){
+        event.preventDefault();
+        //console.log("input "+document.getElementById("inputModifTaskTitle").value);
+        taches[index]["title"] = titre.value;
+        taches[index]["date"] = FormatDate(date.value);
+        taches[index]["description"] = description.value;
+
+        createDOMListTask();
+        closeModal("Update");
+    }, {once:true});
+
+    document.getElementById('modalUpdateTask').style.display = "block";
+}
+
+function closeModal(action){
     console.log('Fermeture du modal');
-    document.getElementById('modalModifTask').style.display = "none";
+    document.getElementById('modal'+action+'Task').style.display = "none";
 }
 
 // Lancement de l'application
