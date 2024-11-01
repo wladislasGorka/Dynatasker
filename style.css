@@ -58,7 +58,7 @@ tr.content td {
   display: none;
 }
 
-#modalUpdateTask{
+#modalUpdateTask, #modalCreateTask{
     position: absolute;
     background-color: var(--color-ivory);
     border: 2px solid var(--color-gunmetal);

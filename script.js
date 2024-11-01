@@ -32,58 +32,14 @@ function createDOMHeader(){
     header.appendChild(title);
 }
 
-function createDOMCreateTask(){
-    const createTaskContainer = document.getElementById('createTaskContainer');
-    const title = document.createElement('h2');
-    title.innerHTML = "Création de Tâche";
+function createDOMCreateTask(){    
+    // Bouton  pour ouvrir le modal de création
+    const createTask = document.createElement('button');
+    createTask.setAttribute('type','button');
+    createTask.innerHTML = "Add";
+    createTask.setAttribute('onclick','modalCreateTask()');
 
-    //Formulaire pour la création d'une tâche
-    const formCreateTask = document.createElement('form');
-    formCreateTask.setAttribute('method','post');
-    formCreateTask.setAttribute('name','formCreateTask');
-
-    const inputTaskTitle = document.createElement('input');
-    inputTaskTitle.setAttribute('id','inputTaskTitle');
-    inputTaskTitle.setAttribute('type','text');
-    inputTaskTitle.setAttribute('placeholder','Titre');
-
-    const inputTaskDate = document.createElement('input');
-    inputTaskDate.setAttribute('id','inputTaskDate');
-    inputTaskDate.setAttribute('type','date');
-    inputTaskDate.setAttribute('placeholder','jj/mm/aaaa');
-
-    const inputTaskDescription = document.createElement('textarea');
-    inputTaskDescription.setAttribute('id','inputTaskDescription');
-    inputTaskDescription.setAttribute('type','text');
-    inputTaskDescription.setAttribute('placeholder','Description de la tâche...');
-
-    // Bouton de validation du form
-    const formCreateTaskSubmit = document.createElement('input');
-    formCreateTaskSubmit.setAttribute('type','submit');
-    formCreateTaskSubmit.setAttribute('value','Y');
-    formCreateTask.addEventListener('submit', function(event){
-        event.preventDefault();
-        //console.log(document.getElementById("inputTaskTitle").value);
-        const title = document.getElementById("inputTaskTitle").value;
-        let date = document.getElementById("inputTaskDate").value;
-        date = FormatDate(date);
-        const description = document.getElementById("inputTaskDescription").value;
-        addTask(title,date,description);
-    });
-    // Bouton  pour annuler la saisie (champs vidés)
-    const formCreateTaskCancel = document.createElement('button');
-    formCreateTaskCancel.setAttribute('type','button');
-    formCreateTaskCancel.innerHTML = "X";
-    formCreateTaskCancel.setAttribute('onclick','addTaskCancel()');
-
-    formCreateTask.appendChild(inputTaskTitle);
-    formCreateTask.appendChild(inputTaskDate);
-    formCreateTask.appendChild(inputTaskDescription);
-    formCreateTask.appendChild(formCreateTaskSubmit);
-    formCreateTask.appendChild(formCreateTaskCancel);
-
-    createTaskContainer.appendChild(title);
-    createTaskContainer.appendChild(formCreateTask);
+    document.body.appendChild(createTask);
 }
 
 function addTask(title,date,description){
@@ -124,7 +80,7 @@ function addRowTaskInfo(index,titre,date,statut){
     const btnModif = document.createElement('button');
     btnModif.setAttribute('type','button');
     btnModif.innerHTML = "M";
-    btnModif.setAttribute('onclick',`event.stopPropagation(); modifTask(${index})`);
+    btnModif.setAttribute('onclick',`event.stopPropagation(); modalUpdateTask(${index})`);
     const td5 = document.createElement('td');
     const btnSuppr = document.createElement('button');
     btnSuppr.setAttribute('type','button');
@@ -183,7 +139,17 @@ function FormatDateTiret(date){
     return newDate;
 }
 
-function modifTask(index){
+function modalCreateTask(){
+    console.log('creation d\'une tache ');
+    const modal = document.getElementById('modalCreateTask');
+    if(modal === null){
+        createModal("Create");
+        openModalCreateTask();
+    }else{
+        openModalCreateTask();
+    }
+}
+function modalUpdateTask(index){
     console.log('modifier la tache '+index);
     const modal = document.getElementById('modalUpdateTask');
     if(modal === null){
@@ -236,53 +202,6 @@ function createModal(action){
     modal.appendChild(form);
     document.body.appendChild(modal);
 }
-
-// function createModalModifTask(){
-//     console.log('creation modal');
-//     const modal = document.createElement('section');
-//     modal.setAttribute('id','modalModifTask');
-//     modal.style.display = "none";
-
-//     const header = document.createElement('h1');
-//     header.innerHTML = "Modification de la Tâche:";
-
-//     //Formulaire pour la création d'une tâche
-//     const formModifTask = document.createElement('form');
-//     formModifTask.setAttribute('method','post');
-//     formModifTask.setAttribute('id','formModifTask');
-//     formModifTask.setAttribute('name','formModifTask');
-
-//     const inputTaskTitle = document.createElement('input');
-//     inputTaskTitle.setAttribute('id','inputModifTaskTitle');
-//     inputTaskTitle.setAttribute('type','text');
-
-//     const inputTaskDate = document.createElement('input');
-//     inputTaskDate.setAttribute('id','inputModifTaskDate');
-//     inputTaskDate.setAttribute('type','date');
-
-//     const inputTaskDescription = document.createElement('textarea');
-//     inputTaskDescription.setAttribute('id','inputModifTaskDescription');
-//     inputTaskDescription.setAttribute('type','text');
-
-//     // Bouton de validation du form
-//     const formModifTaskSubmit = document.createElement('input');
-//     formModifTaskSubmit.setAttribute('type','submit');
-//     formModifTaskSubmit.setAttribute('value','Valider');
-
-//     const btnCancelModif = document.createElement('button');
-//     btnCancelModif.setAttribute('type','button');
-//     btnCancelModif.innerHTML = "Annuler";
-//     btnCancelModif.setAttribute('onclick','closeModalModif()');
-
-//     modal.appendChild(header);
-//     formModifTask.appendChild(inputTaskTitle);
-//     formModifTask.appendChild(inputTaskDate);
-//     formModifTask.appendChild(inputTaskDescription);
-//     formModifTask.appendChild(formModifTaskSubmit);
-//     modal.appendChild(formModifTask);
-//     modal.appendChild(btnCancelModif);
-//     document.body.appendChild(modal);
-// }
 function createInput(form,action,data,type,placeholder){
     const label = document.createElement('label');
     label.setAttribute('for','input'+action+data);
@@ -298,6 +217,25 @@ function createInput(form,action,data,type,placeholder){
     form.appendChild(input);
 }
 
+function openModalCreateTask(){
+    console.log('Ouverture du modal');
+
+    document.getElementById('formCreateTask').addEventListener('submit', function(event){
+        event.preventDefault();
+        const titre = document.getElementById('inputCreateTitre').value;
+        let date = document.getElementById('inputCreateDate').value;
+        date = FormatDate(date);
+        const description = document.getElementById('inputCreateDescription').value;
+
+        addTask(titre,date,description);
+
+        createDOMListTask();
+        closeModal("Create");
+    }, {once:true});
+
+    document.getElementById('modalCreateTask').style.display = "block";
+}
+
 function openModalUpdateTask(index){
     console.log('Ouverture du modal');
     const titre = document.getElementById('inputUpdateTitre');
@@ -309,7 +247,6 @@ function openModalUpdateTask(index){
 
     document.getElementById('formUpdateTask').addEventListener('submit', function(event){
         event.preventDefault();
-        //console.log("input "+document.getElementById("inputModifTaskTitle").value);
         taches[index]["title"] = titre.value;
         taches[index]["date"] = FormatDate(date.value);
         taches[index]["description"] = description.value;
