@@ -15,11 +15,24 @@ body {
 #header {
   box-shadow: 0px 6px 5px var(--color-slate-gray);
   height: 150px;
+  margin-bottom: 20px;
 }
 #header img {
   background-color: var(--color-ivory);
   height: 150px;
   object-fit: scale-down;
+}
+
+#interfaceContainer{
+    background-color: var(--color-ivory);
+    box-shadow: 0px 6px 5px var(--color-slate-gray);
+    width: 70%;
+    margin-inline: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+#interfaceContainer button{
+    background-color: var(--color-Timberwolf);
 }
 
 table {

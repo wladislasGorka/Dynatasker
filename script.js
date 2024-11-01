@@ -33,13 +33,14 @@ function createDOMHeader(){
 }
 
 function createDOMCreateTask(){    
+    const container = document.getElementById('interfaceContainer');
     // Bouton  pour ouvrir le modal de création
     const createTask = document.createElement('button');
     createTask.setAttribute('type','button');
     createTask.innerHTML = "Add";
     createTask.setAttribute('onclick','modalCreateTask()');
 
-    document.body.appendChild(createTask);
+    container.appendChild(createTask);
 }
 
 function addTask(title,date,description){
