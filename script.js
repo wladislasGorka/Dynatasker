@@ -27,6 +27,7 @@ function createDOMHeader() {
   const header = document.getElementById("header");
   const title = document.createElement("img");
   title.src = "logoElargi.png";
+  title.setAttribute("alt", "Dynatask");
   title.style.width = "100%";
 
   header.appendChild(title);
@@ -81,6 +82,7 @@ function createDOMListTask() {
   for (let i = 0; i < taches.length; i++) {
     addRowTaskInfo(
       i,
+      i,
       taches[i]["title"],
       taches[i]["date"],
       taches[i]["statut"]
@@ -88,7 +90,26 @@ function createDOMListTask() {
     addRowTaskDescription(i, taches[i]["description"]);
   }
 }
-function addRowTaskInfo(index, titre, date, statut) {
+// Remplissage du tableau des Tâches selon un filtre.
+function createListTask(filter) {
+  const tableBody = document.getElementById("tableTaskList");
+  tableBody.innerHTML = "";
+  let index = 0;
+  for (let i = 0; i < taches.length; i++) {
+    if (taches[i]["statut"] === filter) {
+      addRowTaskInfo(
+        i,
+        index,
+        taches[i]["title"],
+        taches[i]["date"],
+        taches[i]["statut"]
+      );
+      addRowTaskDescription(index, taches[i]["description"]);
+      index++;
+    }
+  }
+}
+function addRowTaskInfo(i, index, titre, date, statut) {
   const tableBody = document.getElementById("tableTaskList");
   const row = document.createElement("tr");
   row.setAttribute("class", "collapse");
@@ -107,16 +128,13 @@ function addRowTaskInfo(index, titre, date, statut) {
   btnModif.innerHTML = "M";
   btnModif.setAttribute(
     "onclick",
-    `event.stopPropagation(); modalUpdateTask(${index})`
+    `event.stopPropagation(); modalUpdateTask(${i})`
   );
   const td5 = document.createElement("td");
   const btnSuppr = document.createElement("button");
   btnSuppr.setAttribute("type", "button");
   btnSuppr.innerHTML = '<img class="icon" src="trash-can.png">';
-  btnSuppr.setAttribute(
-    "onclick",
-    `event.stopPropagation(); supprTask(${index})`
-  );
+  btnSuppr.setAttribute("onclick", `event.stopPropagation(); supprTask(${i})`);
 
   td4.appendChild(btnModif);
   td5.appendChild(btnSuppr);
@@ -157,24 +175,6 @@ function printListTask(filter) {
     return console.log("Affiche les Tâches de statut: Closes");
   }
   return console.log("Le filtre ne correspond à aucun statut.");
-}
-// Remplissage du tableau des Tâches.
-function createListTask(filter) {
-  const tableBody = document.getElementById("tableTaskList");
-  tableBody.innerHTML = "";
-  let index = 0;
-  for (let i = 0; i < taches.length; i++) {
-    if (taches[i]["statut"] === filter) {
-      addRowTaskInfo(
-        index,
-        taches[i]["title"],
-        taches[i]["date"],
-        taches[i]["statut"]
-      );
-      addRowTaskDescription(index, taches[i]["description"]);
-      index++;
-    }
-  }
 }
 
 // affiche ou cache la description de la tache au click sur la tache.
