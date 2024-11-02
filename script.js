@@ -42,7 +42,8 @@ function createDOMUserInterface() {
   createTask.innerHTML = "Add";
   createTask.setAttribute("onclick", "modalCreateTask()");
 
-  const btnContainer = document.createElement("interfaceBtnContainer");
+  const btnContainer = document.createElement("div");
+  btnContainer.setAttribute("id", "interfaceBtnContainer");
   const buttons = ["Toutes", "Actives", "Closes"];
   for (let i = 0; i < buttons.length; i++) {
     const btn = document.createElement("button");
