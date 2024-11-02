@@ -64,6 +64,7 @@ table {
   margin-inline: auto;
   border-collapse: collapse;
   border-radius: 10px;
+  table-layout: fixed;
 }
 thead {
   background-color: var(--color-gunmetal);
@@ -72,11 +73,17 @@ thead {
 }
 thead > tr > th:first-child {
   padding: 5px;
-  width: 20px;
+  width: 2%;
   text-align: center;
 }
 thead > tr > th:nth-child(2) {
   width: 60%;
+}
+thead > tr > th:nth-child(3) {
+  width: 14%;
+}
+thead > tr > th:nth-child(4) {
+  width: 10%;
 }
 tr.collapse:hover {
   background-color: var(--color-Timberwolf);
@@ -84,14 +91,14 @@ tr.collapse:hover {
 tr.content {
   background-color: var(--color-Timberwolf);
 }
+.tdbreak {
+  word-wrap: break-word;
+}
 
 caption {
   margin-top: 10px;
   caption-side: bottom;
   font-size: smaller;
-}
-tr.content td {
-  white-space: pre;
 }
 
 .hidden {
@@ -105,8 +112,8 @@ tr.content td {
   border: 2px solid var(--color-gunmetal);
   border-radius: 20px;
   box-shadow: 0px 6px 5px var(--color-slate-gray);
-  width: 400px;
-  height: 200px;
+  width: 500px;
+  height: 300px;
   top: 50%;
   left: calc(50% - 220px);
   padding: 20px;
@@ -127,4 +134,52 @@ button {
 .buttonIcon {
   border-radius: 20px;
   padding: 0;
+}
+textarea {
+  resize: none;
+}
+
+form {
+  display: grid;
+  grid-template-areas:
+    "titre titre titre date date"
+    "inputTitre inputTitre inputTitre inputDate inputDate"
+    "description description description description description"
+    "inputDescrip inputDescrip inputDescrip inputDescrip inputDescrip"
+    "inputDescrip inputDescrip inputDescrip inputDescrip inputDescrip"
+    "inputDescrip inputDescrip inputDescrip inputDescrip inputDescrip"
+    "inputDescrip inputDescrip inputDescrip inputDescrip inputDescrip"
+    ". . . validate cancel";
+}
+#labelCreateTitre,
+#labelUpdateTitre {
+  grid-area: titre;
+}
+#inputCreateTitre,
+#inputUpdateTitre {
+  grid-area: inputTitre;
+}
+#labelCreateDate,
+#labelUpdateDate {
+  grid-area: date;
+}
+#inputCreateDate,
+#inputUpdateDate {
+  grid-area: inputDate;
+}
+#labelCreateDescription,
+#labelUpdateDescription {
+  grid-area: description;
+}
+#inputCreateDescription,
+#inputUpdateDescription {
+  grid-area: inputDescrip;
+}
+#formValidateCreateTask,
+#formValidateUpdateTask {
+  grid-area: validate;
+}
+#formCancelCreateTask,
+#formCancelUpdateTask {
+  grid-area: cancel;
 }

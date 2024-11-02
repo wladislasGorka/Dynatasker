@@ -172,10 +172,10 @@ function addRowTaskDescription(index, description) {
   const tableBody = document.getElementById("tableTaskList");
   const row = document.createElement("tr");
   row.setAttribute("id", `content${index}`);
-  row.setAttribute("class", "content hidden");
+  row.setAttribute("class", "content hidden tdbreak");
   const th = document.createElement("th");
   const td = document.createElement("td");
-  td.setAttribute("colspan", "5");
+  td.setAttribute("colspan", "6");
   td.innerHTML = description;
 
   row.appendChild(th);
@@ -283,11 +283,12 @@ function createModal(action) {
 
   // Bouton de validation du form
   const formSubmit = document.createElement("input");
+  formSubmit.setAttribute("id", "formValidate" + action + "Task");
   formSubmit.setAttribute("type", "submit");
   formSubmit.setAttribute("value", "Valider");
-  formSubmit.setAttribute("id", "form" + action + "Task");
   // Bouton d'annulation du form
   const formCancel = document.createElement("button");
+  formCancel.setAttribute("id", "formCancel" + action + "Task");
   formCancel.setAttribute("type", "button");
   formCancel.innerHTML = "Annuler";
   formCancel.setAttribute("onclick", 'closeModal("' + action + '")');
@@ -300,6 +301,7 @@ function createModal(action) {
 }
 function createInput(form, action, data, type, placeholder) {
   const label = document.createElement("label");
+  label.setAttribute("id", "label" + action + data);
   label.setAttribute("for", "input" + action + data);
   data === "Date"
     ? (label.innerHTML = "Date d'échéance")
@@ -307,7 +309,8 @@ function createInput(form, action, data, type, placeholder) {
 
   let input;
   type === "textarea"
-    ? (input = document.createElement("textarea"))
+    ? ((input = document.createElement("textarea")),
+      input.setAttribute("rows", "4"))
     : (input = document.createElement("input"));
   type === "date"
     ? input.setAttribute("type", "date")
@@ -351,7 +354,7 @@ function openModalUpdateTask(index) {
   const date = document.getElementById("inputUpdateDate");
   date.value = taches[index]["date"];
   const description = document.getElementById("inputUpdateDescription");
-  description.innerHTML = taches[index]["description"];
+  description.value = taches[index]["description"];
 
   document.getElementById("formUpdateTask").addEventListener(
     "submit",
