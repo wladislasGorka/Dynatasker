@@ -145,15 +145,36 @@ function addRowTaskDescription(index, description) {
 
 function printListTask(filter) {
   if (filter === "Toutes") {
+    createDOMListTask();
     return console.log("Affiche les Tâches de statut: Toutes");
   }
   if (filter === "Actives") {
+    createListTask("Active");
     return console.log("Affiche les Tâches de statut: Actives");
   }
   if (filter === "Closes") {
+    createListTask("Close");
     return console.log("Affiche les Tâches de statut: Closes");
   }
   return console.log("Le filtre ne correspond à aucun statut.");
+}
+// Remplissage du tableau des Tâches.
+function createListTask(filter) {
+  const tableBody = document.getElementById("tableTaskList");
+  tableBody.innerHTML = "";
+  let index = 0;
+  for (let i = 0; i < taches.length; i++) {
+    if (taches[i]["statut"] === filter) {
+      addRowTaskInfo(
+        index,
+        taches[i]["title"],
+        taches[i]["date"],
+        taches[i]["statut"]
+      );
+      addRowTaskDescription(index, taches[i]["description"]);
+      index++;
+    }
+  }
 }
 
 // affiche ou cache la description de la tache au click sur la tache.
