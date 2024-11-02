@@ -317,6 +317,7 @@ function createInput(form, action, data, type, placeholder) {
     : input.setAttribute("type", "text");
   input.setAttribute("id", "input" + action + data);
   input.setAttribute("placeholder", placeholder);
+  input.setAttribute("required", "");
 
   form.appendChild(label);
   form.appendChild(input);

@@ -1,1 +1,38 @@
-[{"title":"test date","description":"la vie 2","date":"2024-11-05","statut":"Active"},{"title":"T2","description":"test test test test test test tefst test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test ","date":"2024-11-11","statut":"Active"},{"title":"T1","description":"azerty3","date":"2024-11-15","statut":"Active"},{"title":"test 1","description":"les oiseaux chantent!","date":"2024-11-22","statut":"Active"},{"title":"ZRzzt","description":"","date":"2024-11-30","statut":"Close"}]
+[
+  {
+    "title": "Planifier le déjeuner de fin d'année",
+    "description": "Organiser un déjeuner pour l'équipe en décembre. Réserver un restaurant et préparer les invitations.",
+    "date": "2024-11-05",
+    "statut": "Active"
+  },
+  {
+    "title": "Envoyer les invitations pour le déjeuner",
+    "description": "Créer et envoyer les invitations aux membres de l'équipe. Inclure la date, l'heure et le lieu de l'événement, avec RSVP.",
+    "date": "2024-11-11",
+    "statut": "Active"
+  },
+  {
+    "title": "Réserver le photographe",
+    "description": "Trouver un photographe pour l'événement de fin d'année. Confirmer la disponibilité et négocier les tarifs.",
+    "date": "2024-11-15",
+    "statut": "Active"
+  },
+  {
+    "title": "Commander les décorations",
+    "description": "Acheter ou louer les décorations nécessaires pour l'événement. Prévoir un budget et choisir un thème de décoration.",
+    "date": "2024-11-15",
+    "statut": "Active"
+  },
+  {
+    "title": "Préparer un discours de remerciement",
+    "description": "Écrire un discours pour remercier l'équipe et récapituler les succès de l'année écoulée.",
+    "date": "2024-11-22",
+    "statut": "Active"
+  },
+  {
+    "title": "Vérifier le paiement du restaurant",
+    "description": "S'assurer que la réservation du restaurant est confirmée et que le paiement est effectué.",
+    "date": "2024-11-30",
+    "statut": "Close"
+  }
+]

@@ -113,9 +113,9 @@ caption {
   border-radius: 20px;
   box-shadow: 0px 6px 5px var(--color-slate-gray);
   width: 500px;
-  height: 300px;
+  height: 330px;
   top: 50%;
-  left: calc(50% - 220px);
+  left: calc(50% - 274px);
   padding: 20px;
   z-index: 10;
 }
@@ -141,6 +141,8 @@ textarea {
 
 form {
   display: grid;
+  row-gap: 1em;
+  column-gap: 1em;
   grid-template-areas:
     "titre titre titre date date"
     "inputTitre inputTitre inputTitre inputDate inputDate"
@@ -178,8 +180,18 @@ form {
 #formValidateCreateTask,
 #formValidateUpdateTask {
   grid-area: validate;
+  background-color: var(--color-gunmetal);
+  color: var(--color-ivory);
+  border: none;
+  height: 30px;
+  font-family: "Jersey 15", sans-serif;
 }
 #formCancelCreateTask,
 #formCancelUpdateTask {
   grid-area: cancel;
+  background-color: var(--color-gunmetal);
+  color: var(--color-ivory);
+  border: none;
+  height: 30px;
+  font-family: "Jersey 15", sans-serif;
 }
