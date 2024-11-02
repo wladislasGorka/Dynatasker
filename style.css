@@ -23,16 +23,17 @@ body {
   object-fit: scale-down;
 }
 
-#interfaceContainer{
-    background-color: var(--color-ivory);
-    box-shadow: 0px 6px 5px var(--color-slate-gray);
-    width: 70%;
-    margin-inline: auto;
-    margin-bottom: 20px;
-    padding: 10px;
+#interfaceContainer {
+  background-color: var(--color-ivory);
+  box-shadow: 0px 6px 5px var(--color-slate-gray);
+  width: 70%;
+  margin-inline: auto;
+  margin-bottom: 20px;
+  padding: 10px;
 }
-#interfaceContainer button{
-    background-color: var(--color-Timberwolf);
+#interfaceContainer button {
+  background-color: var(--color-Timberwolf);
+  /* transform: skew(-10deg); */
 }
 
 table {
@@ -71,18 +72,19 @@ tr.content td {
   display: none;
 }
 
-#modalUpdateTask, #modalCreateTask{
-    position: absolute;
-    background-color: var(--color-ivory);
-    border: 2px solid var(--color-gunmetal);
-    border-radius: 20px;
-    box-shadow: 0px 6px 5px var(--color-slate-gray);
-    width: 400px;
-    height: 200px;
-    top: 50%;
-    left: calc(50% - 220px);
-    padding: 20px;
-    z-index: 10;
+#modalUpdateTask,
+#modalCreateTask {
+  position: absolute;
+  background-color: var(--color-ivory);
+  border: 2px solid var(--color-gunmetal);
+  border-radius: 20px;
+  box-shadow: 0px 6px 5px var(--color-slate-gray);
+  width: 400px;
+  height: 200px;
+  top: 50%;
+  left: calc(50% - 220px);
+  padding: 20px;
+  z-index: 10;
 }
 button {
   border: none;

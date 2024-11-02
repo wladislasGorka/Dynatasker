@@ -19,7 +19,7 @@ async function app() {
   // Récupération des taches avant manipuler le DOM
   await monJSONParser("task.json");
   createDOMHeader();
-  createDOMCreateTask();
+  createDOMUserInterface();
   createDOMListTask();
 }
 
@@ -32,15 +32,29 @@ function createDOMHeader() {
   header.appendChild(title);
 }
 
-function createDOMCreateTask() {
+function createDOMUserInterface() {
   const container = document.getElementById("interfaceContainer");
   // Bouton  pour ouvrir le modal de création
   const createTask = document.createElement("button");
+  createTask.setAttribute("id", "btnCreateTask");
   createTask.setAttribute("type", "button");
   createTask.innerHTML = "Add";
   createTask.setAttribute("onclick", "modalCreateTask()");
 
+  const btnContainer = document.createElement("interfaceBtnContainer");
+  const buttons = ["Toutes", "Actives", "Closes"];
+  for (let i = 0; i < buttons.length; i++) {
+    const btn = document.createElement("button");
+    btn.setAttribute("id", "interfaceBtn" + buttons[i]);
+    btn.setAttribute("type", "button");
+    btn.innerHTML = buttons[i];
+    btn.setAttribute("onclick", `printListTask("${buttons[i]}")`);
+
+    btnContainer.appendChild(btn);
+  }
+
   container.appendChild(createTask);
+  container.appendChild(btnContainer);
 }
 
 function addTask(title, date, description) {
@@ -127,6 +141,19 @@ function addRowTaskDescription(index, description) {
   row.appendChild(th);
   row.appendChild(td);
   tableBody.appendChild(row);
+}
+
+function printListTask(filter) {
+  if (filter === "Toutes") {
+    return console.log("Affiche les Tâches de statut: Toutes");
+  }
+  if (filter === "Actives") {
+    return console.log("Affiche les Tâches de statut: Actives");
+  }
+  if (filter === "Closes") {
+    return console.log("Affiche les Tâches de statut: Closes");
+  }
+  return console.log("Le filtre ne correspond à aucun statut.");
 }
 
 // affiche ou cache la description de la tache au click sur la tache.
