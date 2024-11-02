@@ -1,6 +1,7 @@
 let taches; // Tableau des taches construit à partir du fichier json
 let currentTaskDisplay = ""; // tache dont la description est visible
 let currentFilter = "Toutes"; // filtre en cours d'utilisation pour l'affichage des tâches
+let sortByDateFromNew = true; // Sens du tri par date
 
 // Récupération des informations dans le .json pour créer le tableau des taches
 async function monJSONParser(url) {
@@ -391,6 +392,12 @@ function swap(array, index1, index2) {
   let temp = array[index1];
   array[index1] = array[index2];
   array[index2] = temp;
+}
+
+function sortByDateChange() {
+  sortByDateFromNew = !sortByDateFromNew;
+  sortByDate(taches, sortByDateFromNew);
+  printListTask(currentFilter);
 }
 
 // fetch
