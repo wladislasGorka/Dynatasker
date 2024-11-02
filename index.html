@@ -1,47 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="Logo.png">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="Logo.png" />
+    <link rel="stylesheet" href="style.css" />
     <title>Dynatasker</title>
-</head>
-<body>
+  </head>
+  <body>
     <header id="header"></header>
 
-    <section id="createTaskContainer"></section>
+    <section id="interfaceContainer"></section>
 
     <table>
-        <caption>
-            <strong>Dynatasker</strong>- Wladislas GORKA - 2024
-        </caption>
-        <thead>
-            <tr>
-                <th>N°</th>
-                <th>Titre</th>
-                <th>Date</th>
-                <th>Statut</th>
-                <th>Modif</th>
-                <th>Suppr</th>                
-            </tr>
-        </thead>
-        <tbody id="tableTaskList">
-            <!-- <tr class="collapse" onclick="toggleHiddenContent('content1')">
+      <caption>
+        <strong>Dynatasker</strong
+        >- Wladislas GORKA - 2024
+      </caption>
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Titre</th>
+          <th id="tableHeaderDate" onclick="sortByDateChange()">
+            Date
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="12"
+              width="12.5"
+              viewBox="0 0 320 512"
+            >
+              <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                fill="#fafcf2"
+                d="M182.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L128 109.3l0 293.5L86.6 361.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 402.7l0-293.5 41.4 41.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-96-96z"
+              />
+            </svg>
+          </th>
+          <th>Statut</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tableTaskList">
+        <!-- <tr class="collapse" onclick="toggleHiddenContent('content1')">
                 <th>1</th>
                 <td>Tache1</td>
                 <td>20/11/2024</td>
                 <td>Active</td>
-                <td>/</td>
-                <td>/</td>
+                <td></td>
+                <td></td>
             </tr>
             <tr id="content1" class="content">
                 <th></th>
                 <td colspan="5">Ici la description de la Tache1</td>
             </tr> -->
-        </tbody>
+      </tbody>
     </table>
-    
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
