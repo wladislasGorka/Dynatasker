@@ -248,10 +248,10 @@ function modalUpdateTask(index) {
   const modal = document.getElementById("modalUpdateTask");
   if (modal === null) {
     createModal("Update");
-    formUpdateAddEvent(index);
-    openModalUpdateTask();
+    formUpdateAddEvent();
+    openModalUpdateTask(index);
   } else {
-    openModalUpdateTask();
+    openModalUpdateTask(index);
   }
 }
 
@@ -355,13 +355,6 @@ function formCreateAddEvent() {
     });
 }
 function formUpdateAddEvent() {
-  // const titre = document.getElementById("inputUpdateTitre");
-  // titre.value = taches[index]["title"];
-  // const date = document.getElementById("inputUpdateDate");
-  // date.value = taches[index]["date"];
-  // const description = document.getElementById("inputUpdateDescription");
-  // description.value = taches[index]["description"];
-
   document
     .getElementById("formUpdateTask")
     .addEventListener("submit", function (event) {
@@ -385,8 +378,14 @@ function openModalCreateTask() {
   console.log("Ouverture du modal");
   document.getElementById("modalCreateTask").style.display = "block";
 }
-function openModalUpdateTask() {
+function openModalUpdateTask(index) {
   console.log("Ouverture du modal");
+  const titre = document.getElementById("inputUpdateTitre");
+  titre.value = taches[index]["title"];
+  const date = document.getElementById("inputUpdateDate");
+  date.value = taches[index]["date"];
+  const description = document.getElementById("inputUpdateDescription");
+  description.value = taches[index]["description"];
   document.getElementById("modalUpdateTask").style.display = "block";
 }
 function closeModal(action) {
