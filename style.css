@@ -35,6 +35,7 @@ body {
   margin-inline: auto;
   margin-bottom: 20px;
   padding: 10px;
+  border-radius: 4px;
 }
 #interfaceContainer button {
   background-color: var(--color-gunmetal);
@@ -44,6 +45,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 1.25rem;
+  border-radius: 4px;
 }
 #btnCreateTask {
   display: inline-block;
@@ -185,6 +187,10 @@ form {
   border: none;
   height: 30px;
   font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.25rem;
+  border-radius: 4px;
 }
 #formCancelCreateTask,
 #formCancelUpdateTask {
@@ -194,4 +200,8 @@ form {
   border: none;
   height: 30px;
   font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.25rem;
+  border-radius: 4px;
 }
