@@ -144,7 +144,7 @@ caption {
   box-shadow: 0px 6px 5px var(--color-slate-gray);
   width: 500px;
   height: 330px;
-  top: 50%;
+  top: calc(50% - 187px);
   left: calc(50% - 274px);
   padding: 20px;
   z-index: 10;
