@@ -233,3 +233,25 @@ form {
   font-size: 1.25rem;
   border-radius: 4px;
 }
+
+@media (max-width: 678px) {
+  body {
+    font-size: 0.8rem;
+  }
+  #header,
+  #header img {
+    height: 80px;
+  }
+  #interfaceContainer {
+    width: 92%;
+  }
+  table {
+    width: 100%;
+  }
+  thead > tr > th:nth-child(2) {
+    width: 45%;
+  }
+  thead > tr > th:nth-child(3) {
+    width: 15%;
+  }
+}

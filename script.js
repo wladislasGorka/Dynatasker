@@ -376,20 +376,24 @@ function formUpdateAddEvent() {
 
 function openModalCreateTask() {
   console.log("Ouverture du modal");
+  // Le modal est rendu visible
   document.getElementById("modalCreateTask").style.display = "block";
 }
 function openModalUpdateTask(index) {
   console.log("Ouverture du modal");
+  // Remplissage du formulaire avec les informations de la tache à modifier
   const titre = document.getElementById("inputUpdateTitre");
   titre.value = taches[index]["title"];
   const date = document.getElementById("inputUpdateDate");
   date.value = taches[index]["date"];
   const description = document.getElementById("inputUpdateDescription");
   description.value = taches[index]["description"];
+  // Le modal est rendu visible
   document.getElementById("modalUpdateTask").style.display = "block";
 }
 function closeModal(action) {
   console.log("Fermeture du modal");
+  // le modal est masqué
   document.getElementById("modal" + action + "Task").style.display = "none";
 }
 
