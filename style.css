@@ -1,8 +1,8 @@
 :root {
-  --color-ivory: #fafcf2;
-  --color-gunmetal: #1c2933;
-  --color-slate-gray: #6d797e;
-  --color-Timberwolf: #d2d6d1;
+  --color-ivory: rgb(250 252 242);
+  --color-gunmetal: rgb(28 41 51);
+  --color-slate-gray: rgb(109 121 126);
+  --color-Timberwolf: rgb(210 214 209);
 }
 
 body {
@@ -11,7 +11,39 @@ body {
   padding: 0;
   position: relative;
   color: var(--color-gunmetal);
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.25rem;
+  height: 100vh;
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    rgba(250, 252, 242, 0.2),
+    rgba(250, 252, 242, 0.2) 3px,
+    transparent 3px,
+    transparent 9px
+  );
+  background-size: 100% 9px;
+  height: 100%;
+  width: 100%;
+  animation: pan-overlay 100s infinite linear;
+  z-index: -1;
+}
+@keyframes pan-overlay {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 0% -100%;
+  }
+}
+
 #header {
   box-shadow: 0px 6px 5px var(--color-slate-gray);
   height: 150px;
@@ -31,10 +63,17 @@ body {
   margin-inline: auto;
   margin-bottom: 20px;
   padding: 10px;
+  border-radius: 4px;
 }
 #interfaceContainer button {
-  background-color: var(--color-Timberwolf);
-  /* transform: skew(-10deg); */
+  background-color: var(--color-gunmetal);
+  color: var(--color-ivory);
+  padding: 8px;
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.25rem;
+  border-radius: 4px;
 }
 #btnCreateTask {
   display: inline-block;
@@ -45,7 +84,7 @@ body {
   right: 10px;
 }
 #interfaceBtnContainer button {
-  margin-left: 2px;
+  margin-left: 5px;
 }
 
 table {
@@ -55,14 +94,26 @@ table {
   margin-inline: auto;
   border-collapse: collapse;
   border-radius: 10px;
+  table-layout: fixed;
 }
 thead {
   background-color: var(--color-gunmetal);
   color: var(--color-ivory);
   text-align: left;
 }
-th {
+thead > tr > th:first-child {
   padding: 5px;
+  width: 2%;
+  text-align: center;
+}
+thead > tr > th:nth-child(2) {
+  width: 60%;
+}
+thead > tr > th:nth-child(3) {
+  width: 14%;
+}
+thead > tr > th:nth-child(4) {
+  width: 10%;
 }
 tr.collapse:hover {
   background-color: var(--color-Timberwolf);
@@ -70,14 +121,14 @@ tr.collapse:hover {
 tr.content {
   background-color: var(--color-Timberwolf);
 }
+.tdbreak {
+  word-wrap: break-word;
+}
 
 caption {
   margin-top: 10px;
   caption-side: bottom;
   font-size: smaller;
-}
-tr.content td {
-  white-space: pre;
 }
 
 .hidden {
@@ -91,10 +142,10 @@ tr.content td {
   border: 2px solid var(--color-gunmetal);
   border-radius: 20px;
   box-shadow: 0px 6px 5px var(--color-slate-gray);
-  width: 400px;
-  height: 200px;
-  top: 50%;
-  left: calc(50% - 220px);
+  width: 500px;
+  height: 330px;
+  top: calc(50% - 187px);
+  left: calc(50% - 274px);
   padding: 20px;
   z-index: 10;
 }
@@ -113,4 +164,94 @@ button {
 .buttonIcon {
   border-radius: 20px;
   padding: 0;
+}
+textarea {
+  resize: none;
+}
+
+form {
+  display: grid;
+  row-gap: 1em;
+  column-gap: 1em;
+  grid-template-areas:
+    "titre titre titre date date"
+    "inputTitre inputTitre inputTitre inputDate inputDate"
+    "description description description description description"
+    "inputDescrip inputDescrip inputDescrip inputDescrip inputDescrip"
+    "inputDescrip inputDescrip inputDescrip inputDescrip inputDescrip"
+    "inputDescrip inputDescrip inputDescrip inputDescrip inputDescrip"
+    "inputDescrip inputDescrip inputDescrip inputDescrip inputDescrip"
+    ". . . validate cancel";
+}
+#labelCreateTitre,
+#labelUpdateTitre {
+  grid-area: titre;
+}
+#inputCreateTitre,
+#inputUpdateTitre {
+  grid-area: inputTitre;
+}
+#labelCreateDate,
+#labelUpdateDate {
+  grid-area: date;
+}
+#inputCreateDate,
+#inputUpdateDate {
+  grid-area: inputDate;
+}
+#labelCreateDescription,
+#labelUpdateDescription {
+  grid-area: description;
+}
+#inputCreateDescription,
+#inputUpdateDescription {
+  grid-area: inputDescrip;
+}
+#formValidateCreateTask,
+#formValidateUpdateTask {
+  grid-area: validate;
+  background-color: var(--color-gunmetal);
+  color: var(--color-ivory);
+  border: none;
+  height: 30px;
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.25rem;
+  border-radius: 4px;
+}
+#formCancelCreateTask,
+#formCancelUpdateTask {
+  grid-area: cancel;
+  background-color: var(--color-gunmetal);
+  color: var(--color-ivory);
+  border: none;
+  height: 30px;
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.25rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 678px) {
+  body {
+    font-size: 0.8rem;
+  }
+  #header,
+  #header img {
+    height: 80px;
+  }
+  #interfaceContainer {
+    width: 92%;
+  }
+  table {
+    width: 100%;
+  }
+  thead > tr > th:nth-child(2) {
+    width: 45%;
+  }
+  thead > tr > th:nth-child(3) {
+    width: 15%;
+  }
 }
