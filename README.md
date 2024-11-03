@@ -59,10 +59,10 @@ Actions disponibles pour chaque tâche :
 
 ### Ajouter et Modifier une tâche
 
-L'ajout et la modification d'une tâche s'effectuent via un bouton "Ajouter" dans la barre d'actions située au-dessus du tableau. L'action ouvre un modal avec un formulaire :
+L'ajout d'une tâche s'effectue via un bouton "Ajouter" dans la barre d'actions située au-dessus du tableau. L'ajout et la modification ouvre un modal avec un formulaire :
 
-**Formulaire d’ajout** : Vide au lancement, il permet d’ajouter une nouvelle tâche.
-**Formulaire de modification** : Pré-rempli avec les informations actuelles de la tâche sélectionnée.
+1. **Formulaire d’ajout** : Vide au lancement, il permet d’ajouter une nouvelle tâche.
+2. **Formulaire de modification** : Pré-rempli avec les informations actuelles de la tâche sélectionnée.
 
 L’utilisateur peut valider (si tous les champs sont remplis) ou annuler l'opération, ce qui ferme le modal.
 
