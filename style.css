@@ -1,8 +1,8 @@
 :root {
-  --color-ivory: #fafcf2;
+  --color-ivory: rgb(250 252 242);
   --color-gunmetal: #1c2933;
   --color-slate-gray: #6d797e;
-  --color-Timberwolf: #d2d6d1;
+  --color-Timberwolf: rgb(210 214 209);
 }
 
 body {
@@ -15,7 +15,35 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 1.25rem;
+  height: 100vh;
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    rgba(250, 252, 242, 0.2),
+    rgba(250, 252, 242, 0.2) 3px,
+    transparent 3px,
+    transparent 9px
+  );
+  background-size: 100% 9px;
+  height: 100%;
+  width: 100%;
+  animation: pan-overlay 100s infinite linear;
+  z-index: -1;
+}
+@keyframes pan-overlay {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 0% -100%;
+  }
+}
+
 #header {
   box-shadow: 0px 6px 5px var(--color-slate-gray);
   height: 150px;
