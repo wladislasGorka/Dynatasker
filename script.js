@@ -17,15 +17,16 @@ async function monJSONParser(url) {
     console.log(error);
   }
 }
-
+// Création des éléments du DOM  et affichage du tableau des tâches après récupération des données
 async function app() {
   // Récupération des taches avant manipuler le DOM
   await monJSONParser("task.json");
+
   createDOMHeader();
   createDOMUserInterface();
   printListTask(currentFilter);
 }
-
+// Création du header
 function createDOMHeader() {
   const header = document.getElementById("header");
   const title = document.createElement("img");
@@ -35,7 +36,7 @@ function createDOMHeader() {
 
   header.appendChild(title);
 }
-
+// Création de la barre d'action (btn ajout de tache, et filtrage)
 function createDOMUserInterface() {
   const container = document.getElementById("interfaceContainer");
   // Bouton  pour ouvrir le modal de création
@@ -62,7 +63,7 @@ function createDOMUserInterface() {
   container.appendChild(createTask);
   container.appendChild(btnContainer);
 }
-
+// Ajoute une nouvelle tâche au tableau
 function addTask(title, date, description) {
   taches.push({
     title: title,
@@ -73,6 +74,7 @@ function addTask(title, date, description) {
   //console.log(taches);
   createDOMListTask();
 }
+// Vide les inputs des formulaires
 function formClear(formAction) {
   console.log("Clear Form " + formAction);
   document.getElementById("input" + formAction + "Titre").value = "";
@@ -114,6 +116,9 @@ function createListTask(filter) {
     }
   }
 }
+// Crée la ligne des informations de la tâche et les boutons (complete,update et supprime)
+// i : indice de la tâche dans le tableau "tâches"
+// index : indice pour l'affichage
 function addRowTaskInfo(i, index, titre, date, statut) {
   const tableBody = document.getElementById("tableTaskList");
   const row = document.createElement("tr");
@@ -169,6 +174,7 @@ function addRowTaskInfo(i, index, titre, date, statut) {
   row.appendChild(td6);
   tableBody.appendChild(row);
 }
+// Crée la ligne avec la description de la tâche (hidden)
 function addRowTaskDescription(index, description) {
   const tableBody = document.getElementById("tableTaskList");
   const row = document.createElement("tr");
@@ -183,11 +189,12 @@ function addRowTaskDescription(index, description) {
   row.appendChild(td);
   tableBody.appendChild(row);
 }
+// CurrentTaskUpdate prend la valeur de la tâche en cours de modification
 function changeCurrentUpdateTask(index) {
   console.log("Update de la tache: " + index);
   currentTaskUpdate = index;
 }
-
+// Affiche la liste des tâches selon le filtre ("Toutes","Actives","Closes")
 function printListTask(filter) {
   currentFilter = filter;
   if (filter === "Toutes") {
@@ -232,6 +239,7 @@ function FormatDateTiret(date) {
   return newDate;
 }
 
+// Crée le modal de création de tâche
 function modalCreateTask() {
   console.log("creation d'une tache ");
   const modal = document.getElementById("modalCreateTask");
@@ -243,6 +251,7 @@ function modalCreateTask() {
     openModalCreateTask();
   }
 }
+// Crée le modal de modification de tâche
 function modalUpdateTask(index) {
   console.log("modifier la tache " + index);
   const modal = document.getElementById("modalUpdateTask");
@@ -255,18 +264,20 @@ function modalUpdateTask(index) {
   }
 }
 
+// Modifie le statut d'une tâche
 function completeTask(index) {
   taches[index]["statut"] = "Close";
   updateJSON(taches);
   printListTask(currentFilter);
 }
+// Supprime une tâche
 function supprTask(index) {
   taches.splice(index, 1);
   updateJSON(taches);
   printListTask(currentFilter);
 }
 
-// Creation de la fenetre modal contenant le formulaire d'ajout ou suppression de tache
+// Création de la fenetre modal contenant le formulaire d'ajout ou suppression de tache
 // action = "Create" || "Update"
 function createModal(action) {
   console.log("creation modal");
@@ -310,6 +321,7 @@ function createModal(action) {
   modal.appendChild(form);
   document.body.appendChild(modal);
 }
+// Création d'un input
 function createInput(form, action, data, type, placeholder) {
   const label = document.createElement("label");
   label.setAttribute("id", "label" + action + data);
@@ -334,6 +346,7 @@ function createInput(form, action, data, type, placeholder) {
   form.appendChild(label);
   form.appendChild(input);
 }
+// Création de l'événement submit pour la création d'une tâche
 function formCreateAddEvent() {
   document
     .getElementById("formCreateTask")
@@ -354,6 +367,7 @@ function formCreateAddEvent() {
       closeModal("Create");
     });
 }
+// Création de l'événement submit pour la modification d'une tâche
 function formUpdateAddEvent() {
   document
     .getElementById("formUpdateTask")
@@ -374,11 +388,13 @@ function formUpdateAddEvent() {
     });
 }
 
+// Ouverture du modal de la création de tâche
 function openModalCreateTask() {
   console.log("Ouverture du modal");
   // Le modal est rendu visible
   document.getElementById("modalCreateTask").style.display = "block";
 }
+// Ouverture du modal de la modification de tâche avec remplissage du formulaire
 function openModalUpdateTask(index) {
   console.log("Ouverture du modal");
   // Remplissage du formulaire avec les informations de la tache à modifier
@@ -391,6 +407,7 @@ function openModalUpdateTask(index) {
   // Le modal est rendu visible
   document.getElementById("modalUpdateTask").style.display = "block";
 }
+// Ferme un modal
 function closeModal(action) {
   console.log("Fermeture du modal");
   // le modal est masqué
@@ -410,12 +427,13 @@ function sortByDate(array, fromNew = true) {
     }
   }
 }
+// Echange deux valeurs dans le tableau
 function swap(array, index1, index2) {
   let temp = array[index1];
   array[index1] = array[index2];
   array[index2] = temp;
 }
-
+// Change le sens du tri chronologique
 function sortByDateChange() {
   sortByDateFromNew = !sortByDateFromNew;
   sortByDate(taches, sortByDateFromNew);
