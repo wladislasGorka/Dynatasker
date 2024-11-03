@@ -27,7 +27,13 @@ Projet réalisez dans le cadre de la formation Beweb.
 
 ### Serveur et Gestion des Données
 
-L'application utilise un serveur **Node.js** pour manipuler un fichier de données (`task.json`). Au lancement de l'application, les données sont récupérées et stockées dans un tableau, ce qui facilite leur manipulation dans le programme.
+L'application utilise un serveur **Node.js** pour manipuler un fichier de données (`task.json`).
+
+Lancement du serveur :
+
+`node serveur.js`
+
+Au lancement de l'application, les données sont récupérées et stockées dans un tableau, ce qui facilite leur manipulation dans le programme.
 Chaque modification de tâche (ajout, suppression, modification) met à jour ce fichier JSON.
 
 Exemple de structure de données dans `task.json` :
@@ -72,5 +78,4 @@ Le tableau des tâches propose également une option de tri chronologique en cli
 
 ---
 
-**Créé par** : Wladislas GORKA
-Formation Beweb - 2024
+**Créé par** : Wladislas GORKA (Apprenant en formation Beweb, 2024)
