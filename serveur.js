@@ -38,8 +38,8 @@ const server = http.createServer((request, response) => {
       });
   } else {
     // Si la requête ne correspond pas à POST /write-json
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("Route non trouvée");
+    response.writeHead(404, { "Content-Type": "text/plain" });
+    response.end("Route non trouvée");
   }
 });
 
