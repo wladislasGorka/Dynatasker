@@ -78,4 +78,9 @@ Le tableau des tâches propose également une option de tri chronologique en cli
 
 ---
 
+![Dynatasker1](https://github.com/user-attachments/assets/2b5953dc-f69e-4156-a1b4-d92f7d5ca52d)
+![Dynatasker2](https://github.com/user-attachments/assets/d6a7d753-4b2f-4cd7-a4c4-d8e94678970d)
+
+
+
 **Créé par** : Wladislas GORKA (Apprenant en formation Beweb, 2024)
